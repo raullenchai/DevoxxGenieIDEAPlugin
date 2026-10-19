@@ -20,8 +20,9 @@ DevoxxGenie integrates with these local LLM providers:
 4. [Llama.cpp](#llamacpp)
 5. [Jan](#jan)
 6. [Nativ](#nativ) (MLX on Apple Silicon)
-7. [Exo](/docs/llm-providers/exo) (Distributed AI cluster)
-8. [Custom OpenAI-compatible Providers](#custom-openai-compatible-providers)
+7. [Rapid-MLX](#rapid-mlx) (MLX on Apple Silicon)
+8. [Exo](/docs/llm-providers/exo) (Distributed AI cluster)
+9. [Custom OpenAI-compatible Providers](#custom-openai-compatible-providers)
 
 ## Ollama
 
@@ -233,6 +234,27 @@ dropdown shows the short name without the organisation prefix.
 - Fully local — no account, subscription, or cloud round-trip
 - Open source under the MIT license
 - OpenAI-compatible API, so streaming and agent mode work as with any other local provider
+
+## Rapid-MLX
+
+[Rapid-MLX](https://github.com/raullenchai/Rapid-MLX) is an open-source (Apache 2.0) command-line server that runs MLX
+models locally on Apple Silicon and exposes an OpenAI-compatible API.
+
+### Setup
+
+1. Install Rapid-MLX with `brew install rapid-mlx` or `pip install rapid-mlx` (Apple Silicon only)
+2. Start the server with a model, for example `rapid-mlx serve qwen3.5-4b-4bit --port 8000`
+3. In DevoxxGenie settings, open **LLM Providers → Local** and tick the **Rapid-MLX URL** checkbox
+4. Select "Rapid-MLX" as the provider in the DevoxxGenie panel — the served model appears in the model dropdown
+
+### Configuration
+
+- **Rapid-MLX URL**: base URL of Rapid-MLX's OpenAI-compatible server, `http://localhost:8000/v1/` by default. Without
+  `--port`, `rapid-mlx serve` uses the first free port in 8000–8009, so pass `--port 8000` or update the URL to match.
+- The context window is read from the `max_model_len` field of `/v1/models`; DevoxxGenie falls back to 8,000 tokens if
+  it is missing.
+
+Rapid-MLX ships disabled in DevoxxGenie so that it does not poll port 8000 unless you opt in.
 
 ## Custom OpenAI-compatible Providers
 

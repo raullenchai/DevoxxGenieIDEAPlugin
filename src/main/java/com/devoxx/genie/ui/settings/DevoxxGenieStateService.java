@@ -140,6 +140,7 @@ public final class DevoxxGenieStateService implements PersistentStateComponent<D
     private String nativModelUrl = NATIV_MODEL_URL;
     // Nativ's /v1/models exposes no context length; null means "use NativChatModelFactory's default".
     private Integer nativFallbackContextLength;
+    private String rapidMLXModelUrl = RAPID_MLX_MODEL_URL;
     private String exoModelUrl = EXO_MODEL_URL;
 
     // Local custom OpenAI-compliant LLM fields
@@ -174,6 +175,11 @@ public final class DevoxxGenieStateService implements PersistentStateComponent<D
      * models, so the user opts in explicitly.
      */
     private boolean isNativEnabled = false;
+    /**
+     * Off by default: Rapid-MLX serves on port 8000, a port other local dev servers often use, so
+     * the user opts in explicitly rather than having DevoxxGenie poll it on every startup.
+     */
+    private boolean isRapidMLXEnabled = false;
     private boolean isExoEnabled = false;
 
     // Local custom OpenAI-compliant LLM fields
@@ -937,6 +943,7 @@ public final class DevoxxGenieStateService implements PersistentStateComponent<D
             case "lmStudioModelUrl" -> getLmstudioModelUrl();
             case "ollamaModelUrl" -> getOllamaModelUrl();
             case "nativModelUrl" -> getNativModelUrl();
+            case "rapidMLXModelUrl" -> getRapidMLXModelUrl();
             case "exoModelUrl" -> getExoModelUrl();
             default -> null;
         };

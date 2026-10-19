@@ -94,6 +94,7 @@ public class LLMProvidersConfigurable implements Configurable {
         isModified |= isFieldModified(llmSettingsComponent.getGpt4AllModelUrlField(), stateService.getGpt4allModelUrl());
         isModified |= isFieldModified(llmSettingsComponent.getJanModelUrlField(), stateService.getJanModelUrl());
         isModified |= isFieldModified(llmSettingsComponent.getNativModelUrlField(), stateService.getNativModelUrl());
+        isModified |= isFieldModified(llmSettingsComponent.getRapidMLXModelUrlField(), stateService.getRapidMLXModelUrl());
         isModified |= (stateService.getNativFallbackContextLength() != null) != llmSettingsComponent.getNativFallbackContextEnabledCheckBox().isSelected();
         if (llmSettingsComponent.getNativFallbackContextEnabledCheckBox().isSelected()) {
             Integer savedNativFallback = stateService.getNativFallbackContextLength();
@@ -131,6 +132,7 @@ public class LLMProvidersConfigurable implements Configurable {
         isModified |= stateService.isGpt4AllEnabled() != llmSettingsComponent.getGpt4AllEnabledCheckBox().isSelected();
         isModified |= stateService.isJanEnabled() != llmSettingsComponent.getJanEnabledCheckBox().isSelected();
         isModified |= stateService.isNativEnabled() != llmSettingsComponent.getNativEnabledCheckBox().isSelected();
+        isModified |= stateService.isRapidMLXEnabled() != llmSettingsComponent.getRapidMLXEnabledCheckBox().isSelected();
         isModified |= stateService.isLlamaCPPEnabled() != llmSettingsComponent.getLlamaCPPEnabledCheckBox().isSelected();
         isModified |= stateService.isExoEnabled() != llmSettingsComponent.getExoEnabledCheckBox().isSelected();
         isModified |= isFieldModified(llmSettingsComponent.getExoModelUrlField(), stateService.getExoModelUrl());
@@ -186,6 +188,7 @@ public class LLMProvidersConfigurable implements Configurable {
         settings.setJanModelUrl(llmSettingsComponent.getJanModelUrlField().getText());
         settings.setLlamaCPPUrl(llmSettingsComponent.getLlamaCPPModelUrlField().getText());
         settings.setNativModelUrl(llmSettingsComponent.getNativModelUrlField().getText());
+        settings.setRapidMLXModelUrl(llmSettingsComponent.getRapidMLXModelUrlField().getText());
         settings.setNativFallbackContextLength(
                 llmSettingsComponent.getNativFallbackContextEnabledCheckBox().isSelected()
                         ? llmSettingsComponent.getNativFallbackContextField().getNumber()
@@ -243,6 +246,7 @@ public class LLMProvidersConfigurable implements Configurable {
         settings.setGpt4AllEnabled(llmSettingsComponent.getGpt4AllEnabledCheckBox().isSelected());
         settings.setJanEnabled(llmSettingsComponent.getJanEnabledCheckBox().isSelected());
         settings.setNativEnabled(llmSettingsComponent.getNativEnabledCheckBox().isSelected());
+        settings.setRapidMLXEnabled(llmSettingsComponent.getRapidMLXEnabledCheckBox().isSelected());
         settings.setLlamaCPPEnabled(llmSettingsComponent.getLlamaCPPEnabledCheckBox().isSelected());
         settings.setExoEnabled(llmSettingsComponent.getExoEnabledCheckBox().isSelected());
         settings.setExoModelUrl(llmSettingsComponent.getExoModelUrlField().getText());
@@ -444,6 +448,7 @@ public class LLMProvidersConfigurable implements Configurable {
         llmSettingsComponent.getJanModelUrlField().setText(settings.getJanModelUrl());
         llmSettingsComponent.getLlamaCPPModelUrlField().setText(settings.getLlamaCPPUrl());
         llmSettingsComponent.getNativModelUrlField().setText(settings.getNativModelUrl());
+        llmSettingsComponent.getRapidMLXModelUrlField().setText(settings.getRapidMLXModelUrl());
         llmSettingsComponent.getNativFallbackContextEnabledCheckBox().setSelected(settings.getNativFallbackContextLength() != null);
         llmSettingsComponent.getNativFallbackContextField().setNumber(
                 settings.getNativFallbackContextLength() != null
@@ -501,6 +506,7 @@ public class LLMProvidersConfigurable implements Configurable {
         llmSettingsComponent.getGpt4AllEnabledCheckBox().setSelected(settings.isGpt4AllEnabled());
         llmSettingsComponent.getJanEnabledCheckBox().setSelected(settings.isJanEnabled());
         llmSettingsComponent.getNativEnabledCheckBox().setSelected(settings.isNativEnabled());
+        llmSettingsComponent.getRapidMLXEnabledCheckBox().setSelected(settings.isRapidMLXEnabled());
         llmSettingsComponent.getLlamaCPPEnabledCheckBox().setSelected(settings.isLlamaCPPEnabled());
         llmSettingsComponent.getExoEnabledCheckBox().setSelected(settings.isExoEnabled());
         llmSettingsComponent.getExoModelUrlField().setText(settings.getExoModelUrl());
